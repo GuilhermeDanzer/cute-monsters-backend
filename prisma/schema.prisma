@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb+srv://megadebobeira:btKowXgsT4wQUoV7@cluster0.r09dx.mongodb.net/pokemonDB?retryWrites=true&w=majority&appName=Cluster0"
+}
+
+model User {
+  id       String    @id @map("_id")
+  pokemons Pokemon[]
+}
+
+type Pokemon {
+  id             Int
+  name           String
+  type           String
+  totalLife      Int
+  currentLife    Int
+  level          Int
+  image          String
+  experience     Int
+  evolvesTo      String?
+  evolvesAt      Int?
+  evolutionStage Int
+}
