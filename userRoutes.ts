@@ -65,13 +65,13 @@ router.get('/users/:id', async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'User not found' })
     }
 
-    res.status(200).json(user)
+    return res.status(200).json(user)
   } catch (error: unknown) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       console.error('Prisma error:', error.message)
     }
     console.error('Error fetching user:', error)
-    res.status(500).json({ error: 'Error fetching user' })
+    return res.status(500).json({ error: 'Error fetching user' })
   }
 })
 
@@ -86,7 +86,7 @@ router.patch('/users/:id', async (req: Request, res: Response) => {
         pokemons: pokemons || [],
       },
     })
-    res.status(200).json(updatedUser)
+    return res.status(200).json(updatedUser)
   } catch (error: unknown) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
@@ -95,7 +95,7 @@ router.patch('/users/:id', async (req: Request, res: Response) => {
       console.error('Prisma error:', error.message)
     }
     console.error('Error updating user:', error)
-    res.status(500).json({ error: 'Error updating user' })
+    return res.status(500).json({ error: 'Error updating user' })
   }
 })
 
